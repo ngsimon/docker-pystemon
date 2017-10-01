@@ -14,6 +14,7 @@ RUN apt-get update && \
 RUN cd / && \
     git clone https://github.com/opsxcq/pystemon && \
     cd pystemon && \
+    sed -i '1 i\import redis' pystemon.py && \
     rm -Rf .git
 
 RUN pip install redis
