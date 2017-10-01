@@ -1,19 +1,22 @@
 FROM debian:jessie
 
 LABEL maintainer "opsxcq@strm.sh"
+LABEL maintainer "simon@linosec.lu"
 
 # Base packages
 RUN apt-get update && \
     apt-get -y install \
     git \
     curl \
-    python python-yaml python-beautifulsoup 
+    python python-yaml python-beautifulsoup python-pip
 
 # Clone pystemon repository
 RUN cd / && \
     git clone https://github.com/opsxcq/pystemon && \
     cd pystemon && \
     rm -Rf .git
+
+RUN pip install redis
 
 COPY main.sh /main.sh
 
